@@ -19,7 +19,10 @@ void Application::init()
 	window = new sf::RenderWindow(sf::VideoMode(windows_width, windows_height), "MiniGame", sf::Style::Default, settings);
 
 	player1 = new Player(player_height, player_width, windows_width - 10, windows_height / 2 - player_height / 2);
+	player1->initScore(550, 100, 300);
+
 	player2 = new Player(player_height, player_width, 0,                  windows_height / 2 - player_height / 2);
+	player2->initScore(150, 100, 300);
 
 	pongBall = new PongBall(pongBall_Radius, windows_width/2, windows_height/2);
 

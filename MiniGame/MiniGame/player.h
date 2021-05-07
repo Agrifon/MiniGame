@@ -3,6 +3,7 @@
 
 #include "main.h"
 #include "globalVariable.h"
+#include <sstream>
 
 class Player
 {
@@ -13,7 +14,10 @@ private:
 	float m_posX;
 	float m_posY;
 
-	int score = 0;
+	int m_score = 0;
+
+	sf::Font m_font;
+	sf::Text m_text;
 
 public:
 
@@ -22,6 +26,7 @@ public:
 
 	void draw(sf::RenderWindow* window);
 	void move(float time);
+	void initScore(float posX, float posY, int size);
 
 	friend class PongBall;
 };

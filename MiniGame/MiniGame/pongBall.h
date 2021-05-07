@@ -27,4 +27,6 @@ public:
 	void move(float time, Player* p1, Player* p2);
 };
 
+void separatorDraw(sf::RenderWindow* window);
+
 #endif 

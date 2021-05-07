@@ -13,6 +13,8 @@ PongBall::~PongBall()
 
 void PongBall::draw(sf::RenderWindow* window)
 {
+	separatorDraw(window);
+
 	sf::CircleShape m_circle(m_radius);
 	m_circle.setFillColor(sf::Color::White);
 	m_circle.setPosition(m_posX, m_posY);
@@ -34,17 +36,22 @@ void PongBall::move(float time, Player* p1, Player* p2)
 		}
 		else // не словил шарик
 		{
+			if (!isDead)
+			{
+				p1->m_score++;
+			}
+
 			isDead = true;
+
 			if (wait < timeDeath)
 			{
-				std::cout << wait << std::endl;
 				wait += time;
 			}
 			else
 			{
 				isDead = false;
 				wait = 0;
-				std::cout << "SMEEEEERT" << std::endl;
+
 				m_posX = windows_width / 2;
 				m_posY = windows_height / 2;
 			}
@@ -59,17 +66,22 @@ void PongBall::move(float time, Player* p1, Player* p2)
 		}
 		else // не словил шарик
 		{
+			if (!isDead)
+			{
+				p2->m_score++;
+			}
+
 			isDead = true;
+
 			if (wait < timeDeath)
 			{
-				std::cout << wait << std::endl;
 				wait += time;
 			}
 			else
 			{
 				isDead = false;
 				wait = 0;
-				std::cout << "SMEEEEERT" << std::endl;
+
 				m_posX = windows_width / 2;
 				m_posY = windows_height / 2;
 			}
@@ -86,4 +98,14 @@ void PongBall::move(float time, Player* p1, Player* p2)
 		m_ySpeed *= -1;
 		m_posY = windows_height - pongBall_Radius * 2;
 	}
+}
+
+void separatorDraw(sf::RenderWindow* window)
+{
+	sf::RectangleShape m_rectangle(sf::Vector2f(20, windows_height));
+
+	m_rectangle.setPosition(windows_width / 2 - 10, 0);
+	m_rectangle.setFillColor(sf::Color(255, 255, 255, 100));
+
+	window->draw(m_rectangle);
 }
