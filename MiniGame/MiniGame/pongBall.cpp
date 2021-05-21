@@ -61,6 +61,7 @@ void PongBall::move(float time, Player* p1, Player* p2)
 	{
 		if (m_posY > p2->m_posY && m_posY < p2->m_posY + p2->m_height && !isDead) // платформа по координатам шарика и шарик не вылетел
 		{
+			std::cout << "sdasdas";
 			m_xSpeed *= -1;
 			m_posX = windows_width - pongBall_Radius * 2 - player_width;
 		}

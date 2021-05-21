@@ -3,7 +3,10 @@
 
 int main(int argc, char* argv[])
 {
-	Application application;
+	char mode;
+	std::cin >> mode;
+
+	Application application(mode);
 
 	application.init();
 	application.run();

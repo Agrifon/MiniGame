@@ -3,7 +3,6 @@
 
 #include "main.h"
 #include "player.h"
-#include "globalVariable.h"
 
 class PongBall
 {
@@ -25,6 +24,9 @@ public:
 	~PongBall();
 	void draw(sf::RenderWindow* window);
 	void move(float time, Player* p1, Player* p2);
+
+	friend class I_server_boost_asio;
+	friend class I_client_boost_asio;
 };
 
 void separatorDraw(sf::RenderWindow* window);
