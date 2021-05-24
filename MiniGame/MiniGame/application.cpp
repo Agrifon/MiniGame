@@ -26,7 +26,7 @@ void Application::init()
 	if (isServer)
 	{
 		server = new I_server_boost_asio;
-		boost::thread(boost::bind(server_accept, server));
+		boost::thread(boost::bind(server_accept, server, player2));
 		while (!server->isConnected())
 		{
 			Sleep(100);
@@ -61,7 +61,7 @@ void Application::run()
 	{
 		time = clock.getElapsedTime().asMicroseconds();
 		clock.restart();
-		time /= 800;
+		time /= 800; //time /= 800;
 
 		sf::Event event;
 		while (window->pollEvent(event))
@@ -85,7 +85,7 @@ void Application::isOpenf()
 	{
 		if (window->hasFocus())
 		{
-			player1->move(time);
+			player1->move(time, isServer);
 		}
 
 		pongBall->move(time, player1, player2);
@@ -94,7 +94,8 @@ void Application::isOpenf()
 	{
 		if (window->hasFocus())
 		{
-			player2->move(time);
+			client->send(player2->move(time));
+			//std::cout << player2->move(time) << std::endl;
 		}
 	}
 
@@ -123,7 +124,7 @@ void Application::end()
 	}
 }
 
-void server_accept(I_server* server)
+void server_accept(I_server* server, Player* player2)
 {
-	server->accept();
+	server->accept(player2);
 }

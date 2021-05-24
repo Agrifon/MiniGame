@@ -6,7 +6,7 @@
 
 class Player
 {
-public:
+private:
 	int m_height;
 	int m_width;
 
@@ -18,14 +18,16 @@ public:
 	sf::Font m_font;
 	sf::Text m_text;
 
-//public:
+public:
 
 	Player(int height, int width, float posX, float posY);
 	~Player();
 
 	void draw(sf::RenderWindow* window);
-	void move(float time);
+	void move(const float time, const bool isServer);
+	float move(const float time);
 	void initScore(float posX, float posY, int size);
+	void setPosY(float Y);
 
 	friend class PongBall;
 	friend class I_server_boost_asio;

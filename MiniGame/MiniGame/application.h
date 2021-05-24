@@ -6,7 +6,7 @@
 #include "pongBall.h"
 #include "IServer.h"
 
-void server_accept(I_server* server);
+void server_accept(I_server* server, Player* player2);
 
 class Application
 {
