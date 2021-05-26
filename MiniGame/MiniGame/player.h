@@ -28,6 +28,7 @@ public:
 	float move(const float time);
 	void initScore(float posX, float posY, int size);
 	void setPosY(float Y);
+	float getPosY() const;
 
 	friend class PongBall;
 	friend class I_server_boost_asio;

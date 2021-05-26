@@ -89,3 +89,8 @@ void Player::setPosY(float Y)
 {
 	m_posY = Y;
 }
+
+float Player::getPosY() const
+{
+	return m_posY;
+}

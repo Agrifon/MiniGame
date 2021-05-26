@@ -23,6 +23,9 @@ Application::~Application()
 
 void Application::init()
 {
+	player1 = new Player(player_height, player_width, windows_width - 10, windows_height / 2 - player_height / 2);
+	player2 = new Player(player_height, player_width, 0, windows_height / 2 - player_height / 2);
+
 	if (isServer)
 	{
 		server = new I_server_boost_asio;
@@ -45,11 +48,8 @@ void Application::init()
 	settings.antialiasingLevel = 8;
 
 	window = new sf::RenderWindow(sf::VideoMode(windows_width, windows_height), "MiniGame", sf::Style::Default, settings);
-
-	player1 = new Player(player_height, player_width, windows_width - 10, windows_height / 2 - player_height / 2);
+	
 	player1->initScore(550, 100, 300);
-
-	player2 = new Player(player_height, player_width, 0,                  windows_height / 2 - player_height / 2);
 	player2->initScore(150, 100, 300);
 
 	pongBall = new PongBall(pongBall_Radius, windows_width/2, windows_height/2);
@@ -79,8 +79,8 @@ void Application::run()
 void Application::isOpenf()
 {
 	window->clear(sf::Color::Black);
-	//std::cout << "P1:"<< " "<< player1->m_posX << " " << player1->m_posY << " ";
-	//std::cout << "P2:" << " " << player2->m_posX << " " << player2->m_posY << std::endl;
+	std::cout << "P1:"<< " "<< player1->getPosY() << " ";
+	std::cout << "P2:" << " " << player2->getPosY() << std::endl;
 	if (isServer)
 	{
 		if (window->hasFocus())
@@ -94,8 +94,11 @@ void Application::isOpenf()
 	{
 		if (window->hasFocus())
 		{
-			client->send(player2->move(time));
-			//std::cout << player2->move(time) << std::endl;
+			if (player2->move(time) != player2->getPosY())
+			{
+				client->send(player2->move(time));
+				//std::cout << player2->move(time) << std::endl;
+			}
 		}
 	}
 

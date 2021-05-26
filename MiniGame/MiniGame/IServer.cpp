@@ -83,9 +83,14 @@ void client_session_accept(socket_ptr sock, package& data, Player* player2)
 		size_t len = sock->read_some(buffer(char_s_value));
 		if (len > 0)
 		{
-			std::cout << char_s_value << std::endl;
-
-			player2->setPosY(atof(char_s_value));
+			sock->read_some(buffer(char_s_value));
+			std::string str_s_value = char_s_value;
+			float temp = std::stof(char_s_value);
+			//std::cout << temp << std::endl;
+			if (player2 != nullptr)
+			{
+				player2->setPosY(temp);
+			}
 		}
 	}
 }
@@ -118,7 +123,7 @@ void I_client_boost_asio::send(const float s_value)
 	const char* char_s_value = str_s_value.c_str();
 
 	Sleep(1);
-	//std::cout << char_s_value << std::endl;
+	//std::cout << str_s_value.length() << std::endl;
 	write(*m_sock, buffer(char_s_value, str_s_value.length()));
 }
 
