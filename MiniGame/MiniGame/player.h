@@ -2,7 +2,6 @@
 #define PLAYER_H
 
 #include "main.h"
-#include "globalVariable.h"
 #include <sstream>
 
 class Player
@@ -25,10 +24,15 @@ public:
 	~Player();
 
 	void draw(sf::RenderWindow* window);
-	void move(float time);
+	void move(const float time, const bool isServer);
+	float move(const float time);
 	void initScore(float posX, float posY, int size);
+	void setPosY(float Y);
+	float getPosY() const;
 
 	friend class PongBall;
+	friend class I_server_boost_asio;
+	friend class I_client_boost_asio;
 };
 
 #endif

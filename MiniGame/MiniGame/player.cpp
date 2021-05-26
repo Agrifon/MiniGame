@@ -26,24 +26,50 @@ void Player::draw(sf::RenderWindow* window)
 	window->draw(m_rectangle);
 }
 
-void Player::move(float time)
+void Player::move(const float time, const bool isServer)
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	if (isServer)
 	{
-		if (m_posY > 0)
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 		{
-			m_posY -= 0.5 * time;
+			if (m_posY > 0)
+			{
+				m_posY -= 0.5 * time;
+			}
 		}
-	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-	{
-		if (m_posY < windows_height - player_height)
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 		{
-			m_posY += 0.5 * time;
-			
+			if (m_posY < windows_height - player_height)
+			{
+				m_posY += 0.5 * time;
+			}
 		}
 	}
+}
+
+float Player::move(const float time)
+{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+		{
+			if (m_posY > 0)
+			{
+				float temp_m_posY = m_posY;
+				temp_m_posY -= 0.5 * time;
+				return temp_m_posY;
+			}
+		}
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+		{
+			if (m_posY < windows_height - player_height)
+			{
+				float temp_m_posY = m_posY;
+				temp_m_posY += 0.5 * time;
+				return temp_m_posY;
+			}
+		}
+		return m_posY;
 }
 
 void Player::initScore(float posX, float posY, int size)
@@ -57,4 +83,14 @@ void Player::initScore(float posX, float posY, int size)
 	m_text.setCharacterSize(size);
 
 	m_text.setString("0");
+}
+
+void Player::setPosY(float Y)
+{
+	m_posY = Y;
+}
+
+float Player::getPosY() const
+{
+	return m_posY;
 }

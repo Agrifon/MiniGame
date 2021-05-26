@@ -3,18 +3,25 @@
 
 #include "main.h"
 #include "player.h"
-#include "globalVariable.h"
 #include "pongBall.h"
+#include "IServer.h"
+
+void server_accept(I_server* server, Player* player2);
 
 class Application
 {
 protected:
 	sf::RenderWindow* window;
 
+	bool isServer;
+
 	Player* player1;
 	Player* player2;
 
 	PongBall* pongBall;
+
+	I_server* server;
+	I_server* client;
 
 	sf::Clock clock;
 	float time;
@@ -22,7 +29,7 @@ protected:
 	void isOpenf();
 
 public:
-	Application();
+	Application(char mode);
 	~Application();
 	void init();
 	void run();
