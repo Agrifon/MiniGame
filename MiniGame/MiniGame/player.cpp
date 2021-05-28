@@ -55,9 +55,10 @@ float Player::move(const float time)
 			if (m_posY > 0)
 			{
 				float temp_m_posY = m_posY;
-				temp_m_posY -= 0.5 * time;
+				temp_m_posY -= 1 * time;
 				return temp_m_posY;
 			}
+			Sleep(10);
 		}
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
@@ -65,9 +66,10 @@ float Player::move(const float time)
 			if (m_posY < windows_height - player_height)
 			{
 				float temp_m_posY = m_posY;
-				temp_m_posY += 0.5 * time;
+				temp_m_posY += 1 * time;
 				return temp_m_posY;
 			}
+			Sleep(10);
 		}
 		return m_posY;
 }

@@ -1,6 +1,6 @@
 #include "application.h"
 
-Application::Application(char mode)
+Application::Application(char mode) // model
 	:window(nullptr)
 {
 	if (mode == 's')
@@ -21,7 +21,7 @@ Application::~Application()
 
 }
 
-void Application::init()
+void Application::init() // model
 {
 	player1 = new Player(player_height, player_width, windows_width - 10, windows_height / 2 - player_height / 2);
 	player2 = new Player(player_height, player_width, 0, windows_height / 2 - player_height / 2);
@@ -55,7 +55,7 @@ void Application::init()
 	pongBall = new PongBall(pongBall_Radius, windows_width/2, windows_height/2);
 }
 
-void Application::run()
+void Application::run() //controller
 {
 	while (window->isOpen())
 	{
@@ -76,11 +76,12 @@ void Application::run()
 	}
 }
 
-void Application::isOpenf()
+void Application::isOpenf() // controller + view
 {
 	window->clear(sf::Color::Black);
-	std::cout << "P1:"<< " "<< player1->getPosY() << " ";
+	//std::cout << "P1:"<< " "<< player1->getPosY() << " ";
 	std::cout << "P2:" << " " << player2->getPosY() << std::endl;
+
 	if (isServer)
 	{
 		if (window->hasFocus())
@@ -118,7 +119,7 @@ void Application::isOpenf()
 	window->display();
 }
 
-void Application::end()
+void Application::end() //model
 {
 	if (window != nullptr)
 	{
@@ -127,7 +128,7 @@ void Application::end()
 	}
 }
 
-void server_accept(I_server* server, Player* player2)
+void server_accept(I_server* server, Player* player2) //model
 {
 	server->accept(player2);
 }

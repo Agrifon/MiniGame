@@ -149,7 +149,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="application.cpp" />
+    <ClCompile Include="applicationController.cpp" />
+    <ClCompile Include="applicationModel.cpp" />
+    <ClCompile Include="applicationView.cpp" />
     <ClCompile Include="dataPackage.cpp" />
+    <ClCompile Include="globalLerp.cpp" />
     <ClCompile Include="IServer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player.cpp" />

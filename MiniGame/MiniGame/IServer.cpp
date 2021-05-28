@@ -85,14 +85,27 @@ void client_session_accept(socket_ptr sock, package& data, Player* player2)
 		{
 			sock->read_some(buffer(char_s_value));
 			std::string str_s_value = char_s_value;
-			float temp = std::stof(char_s_value);
-			//std::cout << temp << std::endl;
-			if (player2 != nullptr)
-			{
-				player2->setPosY(temp);
-			}
+
+			lerpBegin = player2->getPosY();
+			lerpEnd = std::stof(char_s_value);
 		}
+
+		while (lerpT <= 1)
+		{
+			std::cout << "lerpBegin:"<< " "<< lerpBegin << " ";
+			std::cout << "lerpEnd:" << " " << lerpEnd << " ";
+			std::cout << "lerpT:" << " " << lerpT << std::endl;
+
+			player2->setPosY(lerp(lerpBegin, lerpEnd, lerpT));
+			lerpT += 0.05;
+		}
+		lerpT = 0;
 	}
+}
+
+float lerp(float begin, float end, float t)
+{
+	return begin * (1 - t) + end * t;
 }
 
 //CLIENT

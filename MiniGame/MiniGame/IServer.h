@@ -6,9 +6,15 @@
 #include "player.h"
 #include "pongBall.h"
 
+extern float lerpBegin;
+extern float lerpEnd;
+extern float lerpT;
+
 using namespace boost::asio;
 
 typedef boost::shared_ptr<ip::tcp::socket> socket_ptr;
+
+float lerp(float start, float end, float t);
 
 void client_session_send(socket_ptr sock, bool& connected, package& data);
 void client_session_accept(socket_ptr sock, package& data, Player* player2);

@@ -6,6 +6,10 @@
 #include "pongBall.h"
 #include "IServer.h"
 
+extern float lerpBegin;
+extern float lerpEnd;
+extern float lerpT;
+
 void server_accept(I_server* server, Player* player2);
 
 class Application
