@@ -31,6 +31,7 @@ protected:
 	float time;
 
 	void isOpenf();
+	void draw();
 
 public:
 	Application(char mode);

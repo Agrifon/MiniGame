@@ -70,7 +70,6 @@ void client_session_send(socket_ptr sock, bool& connected, package& data)
 
 		Sleep(1);
 		write(*sock, buffer(charData, strData.length() + 1));
-
 	}
 }
 
@@ -92,12 +91,14 @@ void client_session_accept(socket_ptr sock, package& data, Player* player2)
 
 		while (lerpT <= 1)
 		{
-			std::cout << "lerpBegin:"<< " "<< lerpBegin << " ";
-			std::cout << "lerpEnd:" << " " << lerpEnd << " ";
-			std::cout << "lerpT:" << " " << lerpT << std::endl;
+			//std::cout << "lerpBegin:"<< " "<< lerpBegin << " ";
+			//std::cout << "lerpEnd:" << " " << lerpEnd << " ";
+			//std::cout << "lerpT:" << " " << lerpT << std::endl;
 
+			_lock.lock();
 			player2->setPosY(lerp(lerpBegin, lerpEnd, lerpT));
 			lerpT += 0.05;
+			_lock.unlock();
 		}
 		lerpT = 0;
 	}
@@ -163,6 +164,7 @@ void I_client_boost_asio::updateData(Player* player1, Player* player2, PongBall*
 
 		dataClient.stringToStruct(strData);
 
+		_lock.lock();
 		player1->m_posX = dataClient.m_player1_posX;
 		player1->m_posY = dataClient.m_player1_posY;
 		player1->m_score = dataClient.m_player1_score;
@@ -173,5 +175,6 @@ void I_client_boost_asio::updateData(Player* player1, Player* player2, PongBall*
 
 		pongBall->m_posX = dataClient.m_pong_posX;
 		pongBall->m_posY = dataClient.m_pong_posY;
+		_lock.unlock();
 	}
 }

@@ -6,9 +6,13 @@
 #include "player.h"
 #include "pongBall.h"
 
+#include <mutex>
+
 extern float lerpBegin;
 extern float lerpEnd;
 extern float lerpT;
+
+extern std::recursive_mutex _lock;
 
 using namespace boost::asio;
 

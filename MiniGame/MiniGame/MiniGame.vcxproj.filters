@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Исходные файлы\GlobalVar">
+      <UniqueIdentifier>{a87fd667-e409-4bff-9996-bf6eca619c4c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -33,9 +36,6 @@
     <ClCompile Include="dataPackage.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="globalLerp.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="applicationView.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
@@ -44,6 +44,9 @@
     </ClCompile>
     <ClCompile Include="applicationModel.cpp">
       <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="globalVar.cpp">
+      <Filter>Исходные файлы\GlobalVar</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -56,9 +59,6 @@
     <ClInclude Include="player.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="globalVariable.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="pongBall.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
@@ -67,6 +67,9 @@
     </ClInclude>
     <ClInclude Include="dataPackage.h">
       <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="globalVariable.h">
+      <Filter>Исходные файлы\GlobalVar</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
